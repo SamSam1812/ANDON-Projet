@@ -1,0 +1,115 @@
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  background: #0C2D57;
+}
+
+.firstDiv {
+  background: #013564;
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  padding-block: 10px;
+  align-items: center;
+}
+
+.divTime {
+  display: grid;
+  justify-items: center;
+  color: white;
+}
+
+.date {
+  font-weight: 500;
+  font-size: 19px;
+}
+
+h1 {
+  color: white;
+  font-size: 30px;
+  margin-left: 10px;
+}
+
+.opeDiv {
+  display: flex;
+  align-items: center;
+}
+
+.opeSpan {
+  color: #116dc4;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.opeNbr {
+  font-size: 20px;
+  font-weight: 600;
+  background: #579CD7;
+  padding: 5px 15px;
+  margin-left: 10px;
+  color: white;
+  border: solid 1px #444444;
+}
+
+.historiqueButton {
+  background: #5A9BD5;
+  border: solid 1px #5A9BD5;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 10px;
+  font-size: 18px;
+  transition: 300ms;
+  text-decoration: none;
+}
+
+.historiqueButton:hover {
+  background: white;
+  color: #5A9BD5;
+}
+
+.loginDiv {
+  display: grid;
+  justify-items: center;
+  margin-top: 200px;
+  margin-inline: 80px;
+  padding: 50px;
+}
+
+.loginform {
+  display: grid;
+  width: 30%;
+  gap: 30px;
+  font-family: "Poppins", sans-serif;
+  background: white;
+  padding-block: 50px;
+  padding-inline: 70px;
+  border-radius: 10px;
+}
+.loginform input {
+  border: none;
+  font-family: "Poppins", sans-serif;
+  border-bottom: solid 2px #EFECEC;
+  font-size: 14px;
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px;
+}
+.loginform button {
+  background: #5A9BD5;
+  border: solid 1px #5A9BD5;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  transition: 300ms;
+  text-decoration: none;
+  cursor: pointer;
+  width: 60%;
+}
+.loginform button:hover {
+  background: white;
+  color: #5A9BD5;
+}
+
+/*# sourceMappingURL=style.css.map */

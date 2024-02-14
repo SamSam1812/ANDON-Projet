@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\admin\adminController;
+use App\Http\Controllers\admin\loginAdminController;
+use App\Http\Controllers\homeController;
+use App\Http\Controllers\sessionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [homeController::class, 'index'])->name('home.page');
+Route::get('/login', [loginAdminController::class, 'showLoginForm'])->name('login');
+Route::get('/session', [sessionController::class, 'index'])->name('session-form');
+Route::post('/login', [loginAdminController::class, 'authenticate']);
+Route::post('/logout', [loginAdminController::class, 'logout'])->name('logout');
