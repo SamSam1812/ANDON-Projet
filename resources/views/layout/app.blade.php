@@ -13,7 +13,9 @@
     <title>@yield('title', '')</title>
 
 </head>
-<body>
+<body id="app">
         @yield('content')
 </body>
+<script src="{{asset('js/script.js')}}"></script>
+@vite(['resources/js/app.js'])
 </html>

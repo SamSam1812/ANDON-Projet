@@ -23,7 +23,7 @@
         </div>
         <div style="display: flex; gap: 10px">
             <a href="" class="historiqueButton">Historique</a>
-            <a href="{{ route('stop-prod', ['id' => $session->id]) }}" class="stopButton">Stopper</a>
+            <a href="{{route('session-form')}}" class="historiqueButton">Lancer une session</a>
         </div>
     </div>
 
@@ -32,13 +32,16 @@
 
         <div class="opeDiv">
             <span class="opeSpan">Nombre d'opérateurs</span>
-            <span class="opeNbr">{{ $session->nbr_operateur }}</span>
+            <span class="opeNbr">0</span>
         </div>
         <heure-en-temps-reel></heure-en-temps-reel>
     </div>
 
-
-    <section>
+    <div style="position: relative">
+    <section >
+        <div style="position: absolute; width: 100%; height: 100%; background: white; opacity: 0.8; display: flex; justify-content: center;">
+            <p style="padding-block:280px; font-size: 28px">Aucune Session demarré</p>
+        </div>
         <div style="display: grid; grid-template-columns: 1fr 4fr;">
             <div class="white_div" style="display: grid; justify-items: center">
                 <span>ETAT LIGNE</span>
@@ -77,7 +80,7 @@
         <div style="display: grid; grid-template-columns: 1fr 3fr 1fr; background: #016682; padding-block:20px ">
             <div style="display: grid; justify-items: center">
                 <span style="color: white">Début réel</span>
-                <p style="color: white; font-size: 24px">{{ $session->created_at->format('H:i') }}</p>
+                <p style="color: white; font-size: 24px">00:00</p>
             </div>
             <div>
                 <div class="progress-container">
@@ -87,55 +90,56 @@
             </div>
             <div style="display: grid; justify-items: center">
                 <span style="color: white">Fin prévisionnelle</span>
-                <span></span>
+                <p style="color: white; font-size: 24px">00:00</p>
             </div>
         </div>
     </section>
 
     <section>
-            <div style="display: grid; grid-template-columns: 1fr 3fr; background: white;">
-                <div class="white_div" style="gap: 10px">
-                    <div style="display: flex; gap: 10px; align-items: center">
-                        <span class="redNbr">3</span>
-                        <span style="color: #EB1F20;">REBUT PESEUSE</span>
-                    </div>
-                    <div class="prod">
-                        <span class="blueText" style="margin-bottom: 3px">Tps Arrêts non programmés</span>
-                        <p class="opeNbr">3</p>
-                    </div>
-                    <div class="prod">
-                        <span class="blueText" style="margin-bottom: 3px">Tps Arrêts programmés</span>
-                        <p class="opeNbr">3</p>
-                    </div>
+        <div style="display: grid; grid-template-columns: 1fr 3fr; background: white;">
+            <div class="white_div" style="gap: 10px">
+                <div style="display: flex; gap: 10px; align-items: center">
+                    <span class="redNbr">0</span>
+                    <span style="color: #EB1F20;">REBUT PESEUSE</span>
                 </div>
-                <div class="white_div" style="display: grid; grid-template-columns: repeat(3,1fr); gap: 10px">
-                    <div class="prod">
-                        <span class="blueText">Nombre de contenants à faire</span>
-                        <p class="opeNbr">{{ $session->nbr_contenant }}</p>
-                    </div>
-                    <div class="prod">
-                        <span class="blueText">Nombre de palettes à faire</span>
-                        <p class="opeNbr">{{ $session->nbr_palette }}</p>
-                    </div>
-                    <div class="prod">
-                        <span class="blueText">Nombre de cartons à faire</span>
-                        <p class="opeNbr">{{ $session->nbr_cartons }}</p>
-                    </div>
-                    <div class="prod">
-                        <span class="greenText">Nombre de contenants faits</span>
-                        <p class="greenNbr">3</p>
-                    </div>
-                    <div class="prod">
-                        <span class="greenText">Nombre de palettes faites</span>
-                        <p class="greenNbr">3</p>
-                    </div>
-                    <div class="prod">
-                        <span class="greenText">Nombre de cartons faits</span>
-                        <p class="greenNbr">3</p>
-                    </div>
+                <div class="prod">
+                    <span class="blueText">Tps Arrêts non programmés</span>
+                    <p class="opeNbr">0</p>
+                </div>
+                <div class="prod">
+                    <span class="blueText">Tps Arrêts programmés</span>
+                    <p class="opeNbr">0</p>
                 </div>
             </div>
+            <div class="white_div" style="display: grid; grid-template-columns: repeat(3,1fr); gap: 10px">
+                <div class="prod">
+                    <span class="blueText">Nombre de contenants à faire</span>
+                    <p class="opeNbr">0</p>
+                </div>
+                <div class="prod">
+                    <span class="blueText">Nombre de palettes à faire</span>
+                    <p class="opeNbr">0</p>
+                </div>
+                <div class="prod">
+                    <span class="blueText">Nombre de cartons à faire</span>
+                    <p class="opeNbr">0</p>
+                </div>
+                <div class="prod">
+                    <span class="greenText">Nombre de contenants faits</span>
+                    <p class="greenNbr">0</p>
+                </div>
+                <div class="prod">
+                    <span class="greenText">Nombre de palettes faites</span>
+                    <p class="greenNbr">0</p>
+                </div>
+                <div class="prod">
+                    <span class="greenText">Nombre de cartons faits</span>
+                    <p class="greenNbr">0</p>
+                </div>
+            </div>
+        </div>
     </section>
+    </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var userInitial = document.getElementById('userInitial');

@@ -41,7 +41,9 @@ h1{
     padding: 5px 15px;
     margin-left: 10px;
     color: white;
-    border:solid 1px #444444;
+    border-radius: 2px;
+    display: grid;
+    align-content: center;
 }
 .historiqueButton{
     background: #5A9BD5;
@@ -52,6 +54,22 @@ h1{
     font-size: 18px;
     transition: 300ms;
     text-decoration: none;
+    cursor: pointer;
+}
+.stopButton{
+    background: darkred;
+    border: solid 1px darkred;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-size: 18px;
+    transition: 300ms;
+    text-decoration: none;
+    cursor: pointer;
+}
+.stopButton:hover{
+    background: white;
+    color: darkred;
 }
 .historiqueButton:hover{
     background: white;
@@ -61,7 +79,7 @@ h1{
 .loginDiv{
     display: grid;
     justify-items: center;
-    margin-top: 200px;
+    margin-top: 130px;
     margin-inline: 80px;
     padding: 50px;
 }
@@ -102,4 +120,152 @@ h1{
         }
 }
 
+.logout-menu {
+    display: none;
+    position: absolute;
+    left: 36px;
+    top: 50px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 5px 0;
+}
 
+.logout-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.logout-menu li {
+    padding: 5px 20px;
+    a{
+        text-decoration: none;
+        color: black;
+    }
+}
+
+.logout-menu li:hover {
+    background-color: #f0f0f0;
+}
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+    position: absolute;
+    top: -14px;
+    left: 10px;
+}
+.green_circle{
+    background: #93CE56;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+}
+.big_green_circle{
+    background: #93CE56;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+.statue_machine{
+    display: grid;
+    justify-items: center;
+    gap: 20px;
+
+}
+.red_circle{
+    background: #EB1F20;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+}
+.big_red_circle{
+    background: #EB1F20;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+
+.progress-container {
+    width: 100%;
+    background-color: #f1f1f1;
+    height: 55px;
+    border-radius: 8px;
+}
+
+.progress-bar {
+    width: 0;
+    height: 30px;
+    background-color: #4caf50;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+}
+.white_div{
+    display: grid;
+    background: white;
+    border: solid 8px #2D5497;
+    padding-block:20px;
+}
+.prod{
+    display: grid;
+    justify-items: center;
+}
+
+.greenNbr{
+    font-size: 20px;
+    font-weight: 600;
+    background: #93CE56;
+    padding: 5px 15px;
+    margin-left: 10px;
+    color: white;
+    border-radius: 2px;
+    display: grid;
+    align-content: center;
+}
+.redNbr{
+    font-size: 20px;
+    font-weight: 600;
+    background: #EB1F20;
+    padding: 5px 15px;
+    margin-left: 10px;
+    color: white;
+    border-radius: 2px;
+    display: grid;
+    align-content: center;
+}
+.greenText{
+    color:#93CE56 ;
+}
+.blueText{
+    color: #579CD7;
+}
+
+.whiteSession{
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+}
+.inputSession{
+    display: grid;
+    gap: 10px;
+    margin-block: 10px;
+    input{
+        font-family: "Poppins", sans-serif;
+        border: solid 1px #EFECEC;
+        font-size: 14px;
+        width: 100%;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .btnSession{
+
+    }
+}

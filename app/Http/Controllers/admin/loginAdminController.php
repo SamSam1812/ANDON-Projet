@@ -25,7 +25,7 @@ class loginAdminController extends Controller
         }
 
         return redirect()->back()->withErrors([
-            'email' => 'Les informations de connexion fournies ne sont pas valides.',
+            'email' => 'Les informations fournies ne sont pas valides.',
         ]);
     }
 
