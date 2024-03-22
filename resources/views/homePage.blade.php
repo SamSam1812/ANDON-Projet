@@ -122,7 +122,7 @@
                     </div>
                     <div class="prod">
                         <span class="greenText">Nombre de contenants faits</span>
-                        <p class="greenNbr">3</p>
+                        <p class="greenNbr">{{ $nbPieceFinMachine }}</p>
                     </div>
                     <div class="prod">
                         <span class="greenText">Nombre de palettes faites</span>

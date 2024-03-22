@@ -15,7 +15,7 @@ return new class extends Migration
             $table->integer('nbr_contenant');
             $table->integer('nbr_cartons');
             $table->time('estimatedTime');
-            $table->char('status');
+            $table->string('status');
             $table->timestamps();
         });
     }

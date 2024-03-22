@@ -15,15 +15,16 @@ class sessionController extends Controller
 
 
     public function stop($id)
-{
+    {
 
-    $production = Session::findOrFail($id);
+        $production = Session::findOrFail($id);
 
-    $production->status = Session::STATUS_COMPLETED;
-    $production->save();
+        $production->status = Session::STATUS_COMPLETED;
+        $production->save();
 
-    return redirect()->route('home.page');
-}
+        return redirect()->route('home.page');
+    }
+    
     public function store(Request $request)
     {
         $validatedData = $request->validate([
