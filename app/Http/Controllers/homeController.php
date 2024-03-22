@@ -22,10 +22,31 @@ class homeController extends Controller
         $nbPieceFinMachine = Info::where('robot_id', 1)->value('NbPieceFinMachine');
 
         return view('homePage', ['session' => $session, 'nbPieceFinMachine' => $nbPieceFinMachine]);
-        $nbPieceFinMachineRobot2 = Info::where('robot_id', 2)->value('NbPieceFinMachine');
+    }
 
-    
-        return view('homePage', ['session' => $session, 'nbPieceFinMachineRobot2' => $nbPieceFinMachineRobot2]);
+    public function getData($sessionId)
+    {
+        $infos = Info::where('session_id', $sessionId)->get();
+
+        $contenants = 0;
+        $palettes = 0;
+        $cartons = 0;
+
+        foreach ($infos as $info) {
+            if ($info->robot_id == 1) {
+                $contenants += $info->NbPieceFinMachine;
+            } elseif ($info->robot_id == 2) {
+                $palettes += $info->NbPieceFinMachine;
+            } elseif ($info->robot_id == 4) {
+                $cartons += $info->NbPieceFinMachine;
+            }
+        }
+
+        return response()->json([
+            'nombre_contenants' => $contenants,
+            'nombre_palettes' => $palettes,
+            'nombre_cartons' => $cartons
+        ]);
     }
 
 }

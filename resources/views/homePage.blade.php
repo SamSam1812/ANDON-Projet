@@ -48,22 +48,7 @@
             </div>
             <div class="white_div" style="gap: 30px">
                 <div style="display: flex; justify-content: space-between; margin-inline: 227px">
-                    <div class="statue_machine">
-                        <span>POLYPROD</span>
-                        <div class="green_circle"></div>
-                    </div>
-                    <div class="statue_machine">
-                        <span>PESEUSE</span>
-                        <div class="green_circle"></div>
-                    </div>
-                    <div class="statue_machine">
-                        <span>REGROUPEUR</span>
-                        <div class="green_circle"></div>
-                    </div>
-                    <div class="statue_machine">
-                        <span>PALETISATION</span>
-                        <div class="green_circle"></div>
-                    </div>
+                    <statue></statue>
                 </div>
                 <div style="display: grid;justify-items: center">
                     <img src="{{asset('img/uimm_ligne.png')}}" style="width: 70%" alt="Image 3d ligne de production">
@@ -120,18 +105,7 @@
                         <span class="blueText">Nombre de cartons à faire</span>
                         <p class="opeNbr">{{ $session->nbr_cartons }}</p>
                     </div>
-                    <div class="prod">
-                        <span class="greenText">Nombre de contenants faits</span>
-                        <p class="greenNbr">{{ $nbPieceFinMachine }}</p>
-                    </div>
-                    <div class="prod">
-                        <span class="greenText">Nombre de palettes faites</span>
-                        <p class="greenNbr">3</p>
-                    </div>
-                    <div class="prod">
-                        <span class="greenText">Nombre de cartons faits</span>
-                        <p class="greenNbr">3</p>
-                    </div>
+                    <home :sessionid="{{ json_encode($session->id) }}"></home>
                 </div>
             </div>
     </section>

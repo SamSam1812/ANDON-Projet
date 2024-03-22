@@ -6,7 +6,7 @@ use App\Http\Controllers\apiController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\sessionController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HistoriqueController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

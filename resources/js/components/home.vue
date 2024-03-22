@@ -17,26 +17,34 @@
 import axios from 'axios';
 
 export default {
+    props: {
+        sessionid: Number
+    },
     data() {
         return {
             nombreContenants: 0,
             nombrePalettes: 0,
-            nombreCartons: 0
+            nombreCartons: 0,
         };
     },
     mounted() {
-        axios.get('/api/vos-donnees')
-            .then(response => {
-                this.nombreContenants = response.data.nombre_contenants;
-                this.nombrePalettes = response.data.nombre_palettes;
-                this.nombreCartons = response.data.nombre_cartons;
-            })
-            .catch(error => {
-                console.error('Erreur lors de la récupération des données :', error);
-            });
+        this.fetchData();
+        setInterval(this.fetchData, 5000);
+    },
+    methods: {
+        fetchData() {
+            axios.get(`/api/vos-donnees/${this.sessionid}`)
+                .then(response => {
+                    this.nombreContenants = response.data.nombre_contenants;
+                    this.nombrePalettes = response.data.nombre_palettes;
+                    this.nombreCartons = response.data.nombre_cartons;
+                })
+                .catch(error => {
+                    console.error('Erreur lors de la récupération des données :', error);
+                });
+        }
     }
 }
 </script>
-
 
 
