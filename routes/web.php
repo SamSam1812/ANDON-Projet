@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\adminController;
 use App\Http\Controllers\admin\loginAdminController;
+use App\Http\Controllers\apiController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\sessionController;
 use Illuminate\Support\Facades\Route;
@@ -27,3 +28,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/logout', [loginAdminController::class, 'logout'])->name('logout');
     Route::get('/stop/{id}', [sessionController::class, 'stop'])->name('stop-prod');
 });
+
+Route::post('/add_data', [apiController::class, 'addData'])->name('add_data');
