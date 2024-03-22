@@ -22,7 +22,6 @@
             </div>
         </div>
         <div style="display: flex; gap: 10px">
-            <a href="" class="historiqueButton">Historique</a>
             <a href="{{ route('stop-prod', ['id' => $session->id]) }}" class="stopButton">Stopper</a>
         </div>
     </div>
