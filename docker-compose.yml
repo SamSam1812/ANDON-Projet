@@ -51,7 +51,6 @@ services:
       - 8067:80
     networks:
       - landing
-
 networks:
   landing:
     driver: bridge

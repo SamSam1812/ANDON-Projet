@@ -2,42 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+
 use App\Models\Info;
 use App\Models\Session;
 class apiController extends Controller
 {
     public function addData(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'robot_id' => 'required',
-            'NbPieceDebutMachine' => ['nullable', 'numeric'],
-            'NbPieceFinMachine' => ['required', 'numeric'],
-            'TopPiece' => ['nullable'],
-            'BP_Andon' => 'required',
-            'NbRebus' => ['required', 'numeric'],
-            'NiveauAppelAndon' => ['required', 'numeric'],
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['success' => false]);
-        }
 
         $session = Session::where('status', Session::STATUS_IN_PROGRESS)->orderBy('id', 'desc')->first();
         if ($session) {
-            Info::updateOrCreate(
-                ['session_id' => $session->id, 'robot_id' => $request->get('robot_id')],
-                [
-                    'NbPieceDebutMachine' => $request->get('NbPieceDebutMachine'),
-                    'NbPieceFinMachine' => $request->get('NbPieceFinMachine'),
-                    'TopPiece' => $request->get('NbPieceFinMachine'),
-                    'BP_Andon' => $request->get('BP_Andon'),
-                    'NbRebus' => $request->get('NbRebus'),
-                    'NiveauAppelAndon' => $request->get('NiveauAppelAndon'),
-                ]
-            );
+            $ip = $request->ip();
+            $data = $request->all();
 
-            return response()->json(['success' => true]);
+            if($data) {
+                $robotId = DB::table('robots')
+                    ->where('ip_robot', $ip)
+                    ->value('id_robot');
+                Info::Create(
+                    [
+                        'robot_id' => $robotId,
+                        'session_id' => $session->id,
+                        'NbPieceDebutMachine' => $data['NbPieceDebutMachine'][0],
+                        'NbPieceFinMachine' => $data['NbPieceFinMachine'][0],
+                        'TopPiece' => $data['TopPiece'][0],
+                        'BP_Andon' => $data['BP_Andon'][0],
+                        'NbRebus' => $data['NbRebus'][0],
+                        'NiveauAppelAndon' => $data['NiveauAppelAndon'][0],
+                    ]
+                );
+                return response()->json(['success' => true]);
+            } else {
+                return response()->json(['success' => false, 'message' => 'Data format is incorrect or missing.']);
+            }
         }
 
         return response()->json(['success' => false]);

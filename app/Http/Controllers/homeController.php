@@ -35,10 +35,9 @@ class homeController extends Controller
         foreach ($infos as $info) {
             if ($info->robot_id == 1) {
                 $contenants += $info->NbPieceFinMachine;
+                $cartons += $info->TopPiece;
             } elseif ($info->robot_id == 2) {
                 $palettes += $info->NbPieceFinMachine;
-            } elseif ($info->robot_id == 4) {
-                $cartons += $info->NbPieceFinMachine;
             }
         }
 
