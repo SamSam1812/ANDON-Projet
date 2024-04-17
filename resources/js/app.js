@@ -6,6 +6,7 @@ import HeureEnTempsReel from './components/TimeComponent.vue';
 import FormSession from './components/FormSession.vue';
 import Home from './components/home.vue';
 import Statue from './components/statut.vue';
+import Rebus from './components/Rebus.vue';
 axios.defaults.baseURL = 'http://localhost:8054';
 
 createApp({
@@ -14,6 +15,7 @@ createApp({
         FormSession,
         Home,
         Statue,
+        Rebus,
     }
 }).mount("#app")
 

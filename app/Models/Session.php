@@ -18,6 +18,12 @@ class Session extends Model
         'nbr_contenant',
         'nbr_cartons',
         'status',
+        'name_chief',
     ];
+
+    public function infos()
+    {
+        return $this->hasMany(Info::class, 'session_id');
+    }
 
 }

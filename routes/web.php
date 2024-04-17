@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\adminController;
 use App\Http\Controllers\admin\loginAdminController;
 use App\Http\Controllers\apiController;
+use App\Http\Controllers\csvController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\sessionController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/session', [sessionController::class, 'index'])->name('session-form');
     Route::get('/logout', [loginAdminController::class, 'logout'])->name('logout');
     Route::get('/stop/{id}', [sessionController::class, 'stop'])->name('stop-prod');
+    Route::get('/historique', [historiqueController::class, 'index'])->name('historique-page');
+    Route::get('/historiqueOverview/{id}', [historiqueController::class, 'show'])->name('historique-show-page');
+    Route::get('/export-csv/{id}', [csvController::class, 'exportCsv'])->name('csv-export');
 });
 
 Route::post('/add_data', [apiController::class, 'addData'])->name('add_data');

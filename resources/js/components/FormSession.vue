@@ -21,6 +21,10 @@
                 <label for="estimatedTime">Temps prévisionnel :</label>
                 <input type="time" id="estimatedTime" v-model="estimatedTime" required>
             </div>
+            <div class="inputSession">
+                <label for="name_chief">Nom du responsable :</label>
+                <input type="text" id="name_chief" v-model="name_chief" required>
+            </div>
             <div style="display: grid; justify-items: center; margin-top: 20px">
                 <button class="historiqueButton" type="submit">Lancer la production</button>
             </div>
@@ -38,6 +42,7 @@ export default {
             nbr_palette: null,
             nbr_cartons: null,
             nbr_contenant: null,
+            name_chief: null,
             estimatedTime: null
         };
     },
@@ -49,14 +54,16 @@ export default {
                     nbr_palette: this.nbr_palette,
                     nbr_cartons: this.nbr_cartons,
                     nbr_contenant: this.nbr_contenant,
-                    estimatedTime: this.estimatedTime
+                    estimatedTime: this.estimatedTime,
+                    name_chief: this.name_chief
                 }).then((res) => {
                     window.location.href = res.data.redirect
                 })
             } catch (error) {
                 console.error('Erreur lors de la soumission de la production :', error);
             }
-        }
+        },
+
     }
 };
 </script>

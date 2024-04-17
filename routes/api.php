@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('/production', [sessionController::class, 'store']);
 Route::get('/vos-donnees/{sessionId}', [\App\Http\Controllers\homeController::class, 'getData']);
+Route::post('/add_fake/{sessionId}', [\App\Http\Controllers\generateDbController::class, 'data']);

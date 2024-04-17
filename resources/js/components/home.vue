@@ -30,6 +30,8 @@ export default {
     mounted() {
         this.fetchData();
         setInterval(this.fetchData, 5000);
+        this.CreateData();
+        setInterval(this.CreateData, 4000);
     },
     methods: {
         fetchData() {
@@ -42,6 +44,14 @@ export default {
                 .catch(error => {
                     console.error('Erreur lors de la récupération des données :', error);
                 });
+        },
+        CreateData() {
+            try {
+                axios.post(`/api/add_fake/${this.sessionid}`, {
+                })
+            } catch (error) {
+                console.error('Erreur lors de la soumission de la production :', error);
+            }
         }
     }
 }

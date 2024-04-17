@@ -24,7 +24,7 @@ class sessionController extends Controller
 
         return redirect()->route('home.page');
     }
-    
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -32,6 +32,7 @@ class sessionController extends Controller
             'nbr_palette' => 'required|integer',
             'nbr_cartons' => 'required|integer',
             'nbr_contenant' => 'required|integer',
+            'name_chief' => 'required|string',
             'estimatedTime' => 'required|date_format:H:i',
         ]);
 
@@ -41,6 +42,7 @@ class sessionController extends Controller
         $production->nbr_cartons = $validatedData['nbr_cartons'];
         $production->nbr_contenant = $validatedData['nbr_contenant'];
         $production->estimatedTime = $validatedData['estimatedTime'];
+        $production->name_chief = $validatedData['name_chief'];
 
         $production->status = Session::STATUS_IN_PROGRESS;
 

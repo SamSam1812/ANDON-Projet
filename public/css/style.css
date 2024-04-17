@@ -8,7 +8,7 @@ body {
 .firstDiv {
   background: #013564;
   display: grid;
-  grid-template-columns: 3fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
   padding-block: 10px;
   align-items: center;
 }
@@ -285,6 +285,140 @@ h1 {
   width: 100%;
   border-radius: 10px;
   padding: 10px;
+}
+.cards-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.card {
+  width: 24rem;
+  height: 24rem;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  color: white;
+  box-shadow: 0 10px 30px 5px rgba(0, 0, 0, 0.2);
+}
+.card img {
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.9;
+  transition: opacity 0.2s ease-out;
+}
+.card h2 {
+  position: absolute;
+  inset: auto auto 30px 30px;
+  margin: 0;
+  transition: inset 0.3s 0.3s ease-out;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.card span {
+  position: absolute;
+  opacity: 0;
+  max-width: 80%;
+  transition: opacity 0.3s ease-out;
+  padding-block: 5px;
+}
+.card p, .card a {
+  position: absolute;
+  opacity: 0;
+  max-width: 80%;
+  transition: opacity 0.3s ease-out;
+}
+.card .div_histo {
+  padding: 30px;
+  margin-top: 170px;
+}
+.card a {
+  inset: auto auto 40px 30px;
+  color: inherit;
+  text-decoration: none;
+}
+.card:hover h2 {
+  inset: auto auto 220px 30px;
+  transition: inset 0.3s ease-out;
+}
+.card:hover p, .card:hover a {
+  opacity: 1;
+  transition: opacity 0.5s 0.1s ease-in;
+}
+.card:hover span {
+  opacity: 1;
+  transition: opacity 0.3s 0.1s ease-in;
+}
+.card:hover img {
+  transition: opacity 0.3s ease-in;
+  opacity: 1;
+}
+
+.white_histo {
+  background: white;
+  color: black;
+  padding: 20px 30px;
+  border-radius: 10px;
+}
+
+.center_histo {
+  display: grid;
+  justify-items: center;
+  padding-top: 200px;
+}
+.center_histo h1 {
+  color: black;
+  margin-block: 10px;
+  text-align: center;
+}
+.center_histo p {
+  text-align: center;
+  margin-block: 5px;
+}
+
+.div_histo {
+  margin-block: 10px;
+}
+
+.color {
+  color: darkred;
+}
+
+.green_text {
+  color: #4caf50;
+}
+
+.exportButton_div {
+  display: grid;
+  justify-items: center;
+}
+.exportButton_div a {
+  background: #4caf50;
+  border: solid 1px #4caf50;
+  padding: 10px 15px;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 300ms;
+  border-radius: 10px;
+  text-decoration: none;
+}
+.exportButton_div a:hover {
+  color: #4caf50;
+  background: white;
+}
+
+.grid_histo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */

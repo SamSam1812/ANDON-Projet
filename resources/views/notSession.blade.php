@@ -22,7 +22,7 @@
             </div>
         </div>
         <div style="display: flex; gap: 10px">
-            <a href="" class="historiqueButton">Historique</a>
+            <a href="{{route('historique-page')}}" class="historiqueButton">Historique</a>
             <a href="{{route('session-form')}}" class="historiqueButton">Lancer une session</a>
         </div>
     </div>

@@ -30,6 +30,7 @@
         <h1>LIGNE ERMAFLEX-ECRAN PRODUCTION INSTANTANEE</h1>
 
         <div class="opeDiv">
+            <span style="margin-right: 20px" class="opeSpan">responsable : <span style="color: white">{{ $session->name_chief }}</span> </span>
             <span class="opeSpan">Nombre d'opérateurs</span>
             <span class="opeNbr">{{ $session->nbr_operateur }}</span>
         </div>
@@ -48,7 +49,7 @@
             </div>
             <div class="white_div" style="gap: 30px">
                 <div style="display: flex; justify-content: space-between; margin-inline: 227px">
-                    <statue></statue>
+                    <statue :sessionid="{{ json_encode($session->id) }}"></statue>
                 </div>
                 <div style="display: grid;justify-items: center">
                     <img src="{{asset('img/uimm_ligne.png')}}" style="width: 70%" alt="Image 3d ligne de production">
@@ -78,21 +79,9 @@
 
     <section>
             <div style="display: grid; grid-template-columns: 1fr 3fr; background: white;">
-                <div class="white_div" style="gap: 10px">
-                    <div style="display: flex; gap: 10px; align-items: center">
-                        <span class="redNbr">3</span>
-                        <span style="color: #EB1F20;">REBUT PESEUSE</span>
-                    </div>
-                    <div class="prod">
-                        <span class="blueText" style="margin-bottom: 3px">Tps Arrêts non programmés</span>
-                        <p class="opeNbr">3</p>
-                    </div>
-                    <div class="prod">
-                        <span class="blueText" style="margin-bottom: 3px">Tps Arrêts programmés</span>
-                        <p class="opeNbr">3</p>
-                    </div>
-                </div>
+                <rebus :sessionid="{{ json_encode($session->id) }}"></rebus>
                 <div class="white_div" style="display: grid; grid-template-columns: repeat(3,1fr); gap: 10px">
+
                     <div class="prod">
                         <span class="blueText">Nombre de contenants à faire</span>
                         <p class="opeNbr">{{ $session->nbr_contenant }}</p>

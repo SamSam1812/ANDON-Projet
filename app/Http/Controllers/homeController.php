@@ -31,20 +31,56 @@ class homeController extends Controller
         $contenants = 0;
         $palettes = 0;
         $cartons = 0;
+        $rebus = 0;
+        $bpAndon1 = false;
+        $bpAndon2 = false;
+        $bpAndon3 = false;
+        $bpAndon4 = false;
+        $appel1 = 1;
+        $appel2 = 1;
+        $appel3 = 1;
+        $appel4 = 1;
 
         foreach ($infos as $info) {
+            // Polyprod
             if ($info->robot_id == 1) {
-                $contenants += $info->NbPieceFinMachine;
-                $cartons += $info->TopPiece;
-            } elseif ($info->robot_id == 2) {
-                $palettes += $info->NbPieceFinMachine;
+                $contenants = ($info->NbPieceFinMachine - $info->NbPieceDebutMachine);
+                $rebus = $info->NbRebus;
+                $bpAndon1 = $info->BP_Andon;
+                $appel1 = $info->NiveauAppelAndon;
+            }
+            // Peseuse
+            elseif ($info->robot_id == 2){
+                $bpAndon2 = $info->BP_Andon;
+                $appel2 = $info->NiveauAppelAndon;
+            }
+            // Regroupeur
+            elseif ($info->robot_id == 3) {
+                $cartons = ($info->NbPieceFinMachine - $info->NbPieceDebutMachine);
+                $bpAndon3 = $info->BP_Andon;
+                $appel3 = $info->NiveauAppelAndon;
+            }
+            // Cobot
+            elseif ($info->robot_id == 4) {
+                $palettes = ($info->NbPieceFinMachine - $info->NbPieceDebutMachine);
+                $bpAndon4 = $info->BP_Andon;
+                $appel4 = $info->NiveauAppelAndon;
             }
         }
 
         return response()->json([
             'nombre_contenants' => $contenants,
             'nombre_palettes' => $palettes,
-            'nombre_cartons' => $cartons
+            'nombre_cartons' => $cartons,
+            'rebus' => $rebus,
+            'bp_1' => $bpAndon1,
+            'bp_2' => $bpAndon2,
+            'bp_3' => $bpAndon3,
+            'bp_4' => $bpAndon4,
+            'appel_1' => $appel1,
+            'appel_2' => $appel2,
+            'appel_3' => $appel3,
+            'appel_4' => $appel4,
         ]);
     }
 

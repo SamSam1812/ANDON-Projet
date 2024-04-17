@@ -13,4 +13,13 @@ class Info extends Model
 
     protected $primaryKey = 'id_info';
 
+    public function session()
+    {
+        return $this->belongsTo(Session::class, 'session_id');
+    }
+    public function robot()
+    {
+        return $this->belongsTo(Robot::class, 'robot_id');
+    }
+
 }
