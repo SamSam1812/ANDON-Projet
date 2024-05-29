@@ -3,9 +3,6 @@
 @section('title', 'Historique ANDON')
 
 @section('content')
-
-@endsection
-
     <div
         style="display: flex; justify-content: space-between; align-content: center; padding: 10px 40px; background: #f6f5f5">
         <div>
