@@ -4,6 +4,8 @@
 
 @section('content')
 
+@endsection
+
     <div
         style="display: flex; justify-content: space-between; align-content: center; padding: 10px 40px; background: #f6f5f5">
         <div>
@@ -52,14 +54,3 @@
     </div>
 @endsection
 
-
-{{--@if($histo->infos->isNotEmpty())
-    @if($histo->infos->robot_id = 1)
-        <span>{{ $histo->infos->first()->NbPieceFinMachine }} / {{ $histo->nbr_contenant }}</span>
-    @else
-        <span>nop</span>
-    @endif
-    <span>{{ $histo->infos->first()->NbPieceFinMachine }}</span>
-@else
-    <span>Pas d'informations disponibles</span>
-@endif--}}

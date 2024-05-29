@@ -4,8 +4,7 @@
 
 @section('content')
 
-    <div
-        style="display: flex; justify-content: space-between; align-content: center; padding: 10px 40px; background: #f6f5f5">
+    <div style="display: flex; justify-content: space-between; align-content: center; padding: 10px 40px; background: #f6f5f5">
         <div>
             <div class="user-initial" id="userInitial"
                  style="background: black; padding: 6px 9px; border-radius: 50px; color: white; cursor:pointer;">
@@ -65,23 +64,36 @@
                 <p style="color: white; font-size: 24px">{{ $session->created_at->format('H:i') }}</p>
             </div>
             <div>
-                <div class="progress-container">
-                    <div class="progress-bar" id="myBar"></div>
-                </div>
 
+                    <progress-bar :sessionid="{{ json_encode($session->id) }}"></progress-bar>
             </div>
             <div style="display: grid; justify-items: center">
+                @php
+                    list($hours, $minutes) = explode(':', $session->estimatedTime);
+                    $interval = new DateInterval("PT" . (int)$hours . "H" . (int)$minutes . "M");
+                    $dateTime = new DateTime($session->created_at);
+                    $dateTime->add($interval);
+                    $formattedDate = $dateTime->format('H:i');
+                @endphp
                 <span style="color: white">Fin prévisionnelle</span>
-                <span></span>
+                <p style="color: white; font-size: 24px">{{ $formattedDate  }}</p>
             </div>
         </div>
     </section>
-
     <section>
             <div style="display: grid; grid-template-columns: 1fr 3fr; background: white;">
-                <rebus :sessionid="{{ json_encode($session->id) }}"></rebus>
+                <div class="white_div" style="gap: 10px">
+                    <rebus :sessionid="{{ json_encode($session->id) }}"></rebus>
+                    <div class="prod">
+                        <span class="blueText" style="margin-bottom: 3px">Tps Arrêts programmés</span>
+                        @php
+                            $dateTime = new DateTime($session->stop_time);
+                            $heureEtMinutes = $dateTime->format('H:i');
+                        @endphp
+                        <p class="opeNbr">{{ $heureEtMinutes }}</p>
+                    </div>
+                </div>
                 <div class="white_div" style="display: grid; grid-template-columns: repeat(3,1fr); gap: 10px">
-
                     <div class="prod">
                         <span class="blueText">Nombre de contenants à faire</span>
                         <p class="opeNbr">{{ $session->nbr_contenant }}</p>

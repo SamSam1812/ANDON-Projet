@@ -9,7 +9,6 @@ class NodeRedDataController extends Controller
     public function store(Request $request)
     {
 
-
         $nodeRedData = new NodeRedData();
         $nodeRedData->data = $request->all();
         $nodeRedData->save();

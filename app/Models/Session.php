@@ -17,6 +17,7 @@ class Session extends Model
         'nbr_palette',
         'nbr_contenant',
         'nbr_cartons',
+        'estimatedTime',
         'status',
         'name_chief',
     ];

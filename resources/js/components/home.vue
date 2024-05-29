@@ -29,13 +29,13 @@ export default {
     },
     mounted() {
         this.fetchData();
-        setInterval(this.fetchData, 5000);
+        setInterval(this.fetchData, 10000);
         this.CreateData();
-        setInterval(this.CreateData, 4000);
+        setInterval(this.CreateData, 18000);
     },
     methods: {
         fetchData() {
-            axios.get(`/api/vos-donnees/${this.sessionid}`)
+            axios.get(`/api/data/${this.sessionid}`)
                 .then(response => {
                     this.nombreContenants = response.data.nombre_contenants;
                     this.nombrePalettes = response.data.nombre_palettes;

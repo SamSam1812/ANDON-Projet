@@ -58,11 +58,11 @@ export default {
     },
     mounted() {
         this.fetchData();
-        setInterval(this.fetchData, 5000);
+        setInterval(this.fetchData, 10000);
     },
     methods: {
         fetchData() {
-            axios.get(`/api/vos-donnees/${this.sessionid}`)
+            axios.get(`/api/data/${this.sessionid}`)
                 .then(response => {
                     this.appel1 = response.data.appel_1;
                     this.appel2 = response.data.appel_2;

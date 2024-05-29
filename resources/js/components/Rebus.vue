@@ -1,5 +1,4 @@
 <template>
-    <div class="white_div" style="gap: 10px">
         <div style="display: flex; gap: 10px; align-items: center">
             <span class="redNbr">{{ rebus }}</span>
             <span style="color: #EB1F20;">REBUT PESEUSE</span>
@@ -8,11 +7,6 @@
             <span class="blueText" style="margin-bottom: 3px">Tps Arrêts non programmés</span>
             <p class="opeNbr">3</p>
         </div>
-        <div class="prod">
-            <span class="blueText" style="margin-bottom: 3px">Tps Arrêts programmés</span>
-            <p class="opeNbr">3</p>
-        </div>
-    </div>
 </template>
 
 <script>
@@ -29,11 +23,11 @@ export default {
     },
     mounted() {
         this.fetchData();
-        setInterval(this.fetchData, 5000);
+        setInterval(this.fetchData, 10000);
     },
     methods: {
         fetchData() {
-            axios.get(`/api/vos-donnees/${this.sessionid}`)
+            axios.get(`/api/data/${this.sessionid}`)
                 .then(response => {
                     this.rebus = response.data.rebus;
                 })

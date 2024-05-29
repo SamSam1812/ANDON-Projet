@@ -301,6 +301,7 @@ h1 {
   position: relative;
   color: white;
   box-shadow: 0 10px 30px 5px rgba(0, 0, 0, 0.2);
+  background: black;
 }
 .card img {
   position: absolute;
@@ -397,6 +398,7 @@ h1 {
 .exportButton_div {
   display: grid;
   justify-items: center;
+  margin-top: 20px;
 }
 .exportButton_div a {
   background: #4caf50;
@@ -417,8 +419,21 @@ h1 {
 
 .grid_histo {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+}
+
+.progress-container {
+  width: 100%;
+  background-color: #f3f3f3;
+}
+
+.progress-bar {
+  background-color: #4caf50;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+  border-radius: 7px;
 }
 
 /*# sourceMappingURL=style.css.map */

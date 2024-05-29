@@ -14,12 +14,16 @@
                 <input type="number" id="nbr_cartons" v-model="nbr_cartons" required>
             </div>
             <div class="inputSession">
-                <label for="nbr_contenant">Nombre de conteneurs :</label>
+                <label for="nbr_contenant">Nombre de contenants :</label>
                 <input type="number" id="nbr_contenant" v-model="nbr_contenant" required>
             </div>
             <div class="inputSession">
                 <label for="estimatedTime">Temps prévisionnel :</label>
                 <input type="time" id="estimatedTime" v-model="estimatedTime" required>
+            </div>
+            <div class="inputSession">
+                <label for="stop_time">Temps d'arrêt prévu :</label>
+                <input type="time" id="stop_time" v-model="stop_time" required>
             </div>
             <div class="inputSession">
                 <label for="name_chief">Nom du responsable :</label>
@@ -43,7 +47,8 @@ export default {
             nbr_cartons: null,
             nbr_contenant: null,
             name_chief: null,
-            estimatedTime: null
+            estimatedTime: null,
+            stop_time : null
         };
     },
     methods: {
@@ -55,7 +60,8 @@ export default {
                     nbr_cartons: this.nbr_cartons,
                     nbr_contenant: this.nbr_contenant,
                     estimatedTime: this.estimatedTime,
-                    name_chief: this.name_chief
+                    name_chief: this.name_chief,
+                    stop_time: this.stop_time
                 }).then((res) => {
                     window.location.href = res.data.redirect
                 })

@@ -10,7 +10,7 @@ class generateDbController extends Controller
     public function data($id)
     {
         if ($id) {
-            $robotid = rand(1, 4) ;
+            $robotid = 1 ;
 
             $lastData = Info::where('session_id', $id)
                 ->where('robot_id', $robotid)
@@ -20,17 +20,16 @@ class generateDbController extends Controller
             $data = [
                 'session_id' => $id,
                 'robot_id' => $robotid,
-                'BP_Andon' =>  0,
+                'BP_Andon' =>  1,
                 'NiveauAppelAndon' => 1,
                 'NbPieceDebutMachine' => 0,
                 'NbPieceFinMachine' => $lastData ? $lastData->NbPieceFinMachine + 5 : 5,
                 'TopPiece' => $lastData ? $lastData->TopPiece + 1 : 1,
                 'NbRebus' => $lastData ? $lastData->NbRebus + 1 : 1,
+                'created_at' => now()
             ];
 
             Info::insert($data);
-        } else {
-            $this->error('No session found.');
         }
     }
 }

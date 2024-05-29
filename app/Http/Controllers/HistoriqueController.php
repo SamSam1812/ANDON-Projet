@@ -13,7 +13,7 @@ class HistoriqueController extends Controller
     public function index()
     {
         $histos = Session::with(['infos' => function($query) {
-            $query->orderBy('created_at', 'desc');
+            $query->orderBy('created_at', 'ASC');
         }])->get();
         return view('historique', compact('histos'));
     }

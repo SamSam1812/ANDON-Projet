@@ -40,24 +40,27 @@
                     <p>Nombre d'opérateur</p>
                     <p class="color">{{$session->nbr_operateur}} personne(s)</p>
                 </div>
-                <div class="div_histo">
                 @foreach ($latestInfos as $info)
-
+                        <div class="div_histo">
                         @if($info->robot_id == 1)
                             <p>Nombre de contenant :</p>
                             <p class="color">
-                                <span class="green_text">{{ $info->NbPieceFinMachine }} fait</span>  sur {{$session->nbr_contenant}} voulu
+                                <span class="green_text">{{ ($info->NbPieceFinMachine - $info->NbPieceDebutMachine) }} fait</span>  sur {{$session->nbr_contenant}} voulu
+                            </p>
+                        @elseif($info->robot_id == 2)
+                            <p>Rebus peseuse :</p>
+                            <p class="color">
+                                {{ $info->NbRebus }}
                             </p>
                         @elseif($info->robot_id == 3)
                             <p>Nombre de carton :</p>
-                            <p class="color"><span class="green_text">{{ $info->NbPieceFinMachine }} fait</span>  sur {{$session->nbr_cartons}} voulu</p>
+                            <p class="color"><span class="green_text">{{ ($info->NbPieceFinMachine - $info->NbPieceDebutMachine) }} fait</span>  sur {{$session->nbr_cartons}} voulu</p>
                         @elseif($info->robot_id == 4)
                             <p>Nombre de palette :</p>
-                            <p class="color"><span class="green_text">{{ $info->NbPieceFinMachine }} fait</span> sur {{$session->nbr_pallette}} voulu</p>
+                            <p class="color"><span class="green_text">{{ ($info->NbPieceFinMachine - $info->NbPieceDebutMachine) }} fait</span> sur {{$session->nbr_palette}} voulu</p>
                         @endif
-
+                        </div>
                 @endforeach
-                </div>
                 <div class="div_histo">
                     <p>Temps prévisionnel</p>
                     <p class="color">{{$session->estimatedTime}}</p>

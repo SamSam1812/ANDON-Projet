@@ -34,6 +34,7 @@ class sessionController extends Controller
             'nbr_contenant' => 'required|integer',
             'name_chief' => 'required|string',
             'estimatedTime' => 'required|date_format:H:i',
+            'stop_time' => 'required|date_format:H:i',
         ]);
 
         $production = new Session();
@@ -43,6 +44,7 @@ class sessionController extends Controller
         $production->nbr_contenant = $validatedData['nbr_contenant'];
         $production->estimatedTime = $validatedData['estimatedTime'];
         $production->name_chief = $validatedData['name_chief'];
+        $production->stop_time = $validatedData['stop_time'];
 
         $production->status = Session::STATUS_IN_PROGRESS;
 
@@ -50,5 +52,4 @@ class sessionController extends Controller
 
         return response()->json(['success' => true, 'redirect' => route('home.session.page', ['id' => $production->id])]);
     }
-
 }

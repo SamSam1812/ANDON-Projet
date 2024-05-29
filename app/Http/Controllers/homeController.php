@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Robot;
 use App\Models\Session;
 use App\Models\Info;
 use Carbon\Carbon;
@@ -14,6 +15,7 @@ class homeController extends Controller
     {
         return view('notSession');
     }
+
     public function sessionStart($id)
     {
         $session = Session::findOrFail($id);
@@ -27,7 +29,6 @@ class homeController extends Controller
     public function getData($sessionId)
     {
         $infos = Info::where('session_id', $sessionId)->get();
-
         $contenants = 0;
         $palettes = 0;
         $cartons = 0;
@@ -48,19 +49,16 @@ class homeController extends Controller
                 $rebus = $info->NbRebus;
                 $bpAndon1 = $info->BP_Andon;
                 $appel1 = $info->NiveauAppelAndon;
-            }
-            // Peseuse
-            elseif ($info->robot_id == 2){
+            } // Peseuse
+            elseif ($info->robot_id == 2) {
                 $bpAndon2 = $info->BP_Andon;
                 $appel2 = $info->NiveauAppelAndon;
-            }
-            // Regroupeur
+            } // Regroupeur
             elseif ($info->robot_id == 3) {
                 $cartons = ($info->NbPieceFinMachine - $info->NbPieceDebutMachine);
                 $bpAndon3 = $info->BP_Andon;
                 $appel3 = $info->NiveauAppelAndon;
-            }
-            // Cobot
+            } // Cobot
             elseif ($info->robot_id == 4) {
                 $palettes = ($info->NbPieceFinMachine - $info->NbPieceDebutMachine);
                 $bpAndon4 = $info->BP_Andon;
@@ -84,4 +82,82 @@ class homeController extends Controller
         ]);
     }
 
+    public function TRS($id)
+    {
+        $session = Session::where('id', $id)->first();
+        if (!$session) {
+            return response()->json(['error' => 'Session not found'], 404);
+        }
+        $infos = Info::where('session_id', $id)->orderBy('created_at')->get();
+        $production_time = Carbon::parse($session->estimatedTime)->secondsSinceMidnight();
+        $stopTime = Carbon::parse($session->stop_time)->secondsSinceMidnight();
+        $operationTime = $production_time - $stopTime;
+        $TRSTime = $operationTime / $production_time;
+        $robotIds = [1, 4, 3];
+        $robotTRS = [];
+        foreach ($robotIds as $robotId) {
+            $intervals = [];
+            $previousEntry = null;
+            $startEntry = null;
+            $accumulatedTime = 0;
+            $totalRealCycleTime = 0;
+            $cycleCount = 0;
+            $robotInfos = $infos->filter(function($info) use ($robotId) {
+                return $info->robot_id === $robotId;
+            });
+            if ($robotInfos->isEmpty()) {
+                $robotTRS[$robotId] = 0;
+                continue;
+            }
+            $theoreticalCycleTime = $robotInfos->first()->robot->CycleMachine;
+            foreach ($robotInfos as $currentEntry) {
+                if ($previousEntry === null) {
+                    $previousEntry = $currentEntry;
+                    $startEntry = $currentEntry;
+                    continue;
+                }
+                $previousTime = Carbon::parse($previousEntry->created_at);
+                $currentTime = Carbon::parse($currentEntry->created_at);
+                $intervalInSeconds = $previousTime->diffInSeconds($currentTime);
+                $abnormalIntervalThreshold = 2 * $theoreticalCycleTime;
+                if ($intervalInSeconds > $abnormalIntervalThreshold) {
+                    $previousEntry = $currentEntry;
+                    continue;
+                }
+                $accumulatedTime += $intervalInSeconds;
+                if ($previousEntry->NbPieceFinMachine !== $currentEntry->NbPieceFinMachine) {
+                    $intervals[] = [
+                        'from' => Carbon::parse($startEntry->created_at),
+                        'to' => $currentTime,
+                        'interval_in_seconds' => $accumulatedTime,
+                        'status_changed' => true,
+                    ];
+                    $totalRealCycleTime += $accumulatedTime;
+                    $accumulatedTime = 0;
+                    $startEntry = $currentEntry;
+                    $cycleCount++;
+                }
+                $previousEntry = $currentEntry;
+            }
+            if ($accumulatedTime > 0) {
+                $intervals[] = [
+                    'from' => Carbon::parse($startEntry->created_at),
+                    'to' => Carbon::parse($previousEntry->created_at),
+                    'interval_in_seconds' => $accumulatedTime,
+                    'status_changed' => false,
+                ];
+                $totalRealCycleTime += $accumulatedTime;
+                $cycleCount++;
+            }
+            $averageRealCycleTime = $cycleCount > 0 ? $totalRealCycleTime / $cycleCount : $theoreticalCycleTime;
+            $efficiency = ($theoreticalCycleTime / $averageRealCycleTime) * 100;
+            $efficiency = min($efficiency, 100);
+            $robotTRS[$robotId] = $TRSTime * ($efficiency / 100);
+        }
+        $globalTRS = array_sum($robotTRS) / count($robotIds);
+        return response()->json([
+            'robot_trs' => $robotTRS,
+            'global_trs' => $globalTRS,
+        ]);
+    }
 }
