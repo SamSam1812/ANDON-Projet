@@ -20,6 +20,9 @@
                 </div>
             </div>
         </div>
+        <div style="display: flex; justify-content: center">
+            <p style="color: white; padding: 5px 25px; font-size: 30px; background: black; position: absolute; border-radius: 5px; opacity: 0.9">Démonstration</p>
+        </div>
         <div style="display: flex; gap: 10px">
             <a href="{{ route('stop-prod', ['id' => $session->id]) }}" class="stopButton">Stopper</a>
         </div>
