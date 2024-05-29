@@ -5,7 +5,7 @@
         </div>
         <div class="prod">
             <span class="blueText" style="margin-bottom: 3px">Tps Arrêts non programmés</span>
-            <p class="opeNbr">3</p>
+            <p class="opeNbr">00:00</p>
         </div>
 </template>
 

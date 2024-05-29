@@ -64,8 +64,7 @@
                 <p style="color: white; font-size: 24px">{{ $session->created_at->format('H:i') }}</p>
             </div>
             <div>
-
-                    <progress-bar :sessionid="{{ json_encode($session->id) }}"></progress-bar>
+                <progress-bar :sessionid="{{ json_encode($session->id) }}"></progress-bar>
             </div>
             <div style="display: grid; justify-items: center">
                 @php

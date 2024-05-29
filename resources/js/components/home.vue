@@ -31,7 +31,11 @@ export default {
         this.fetchData();
         setInterval(this.fetchData, 10000);
         this.CreateData();
-        setInterval(this.CreateData, 18000);
+        setInterval(this.CreateData, 10800);
+        this.CreateDataRegroupeur();
+        setInterval(this.CreateDataRegroupeur, 41400);
+        this.CreateDataPaletisation();
+        setInterval(this.CreateDataPaletisation, 45000);
     },
     methods: {
         fetchData() {
@@ -48,6 +52,22 @@ export default {
         CreateData() {
             try {
                 axios.post(`/api/add_fake/${this.sessionid}`, {
+                })
+            } catch (error) {
+                console.error('Erreur lors de la soumission de la production :', error);
+            }
+        },
+        CreateDataRegroupeur() {
+            try {
+                axios.post(`/api/add_fake_regroupeur/${this.sessionid}`, {
+                })
+            } catch (error) {
+                console.error('Erreur lors de la soumission de la production :', error);
+            }
+        },
+        CreateDataPaletisation() {
+            try {
+                axios.post(`/api/add_fake_paletisation/${this.sessionid}`, {
                 })
             } catch (error) {
                 console.error('Erreur lors de la soumission de la production :', error);

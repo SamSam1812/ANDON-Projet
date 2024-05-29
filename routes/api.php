@@ -24,3 +24,5 @@ Route::get('/data/{sessionId}', [\App\Http\Controllers\homeController::class, 'g
 
 Route::get('/TRS/{sessionId}', [\App\Http\Controllers\homeController::class, 'TRS']);
 Route::post('/add_fake/{sessionId}', [\App\Http\Controllers\generateDbController::class, 'data']);
+Route::post('/add_fake_regroupeur/{sessionId}', [\App\Http\Controllers\generateDbController::class, 'dataRegroupeur']);
+Route::post('/add_fake_paletisation/{sessionId}', [\App\Http\Controllers\generateDbController::class, 'dataPaletisation']);
